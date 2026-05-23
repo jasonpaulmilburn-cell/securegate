@@ -8,14 +8,27 @@ html<!DOCTYPE html>
       body {
         height: 100%;
         margin: 0;
+        background-color: #111111;
+        overflow: hidden;
       }
 
       body {
         font-family: sans-serif;
       }
 
+      .splashElement {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #111111;
+        color: #ffffff;
+      }
+
       button {
-        margin-right: 10px;
+        margin-top: 24px;
+        margin-bottom: 192px;
         background: #34495e;
         border-bottom: #2c3e50 3px solid;
         border-left: #2c3e50 1px solid;
@@ -23,10 +36,11 @@ html<!DOCTYPE html>
         border-radius: 6px;
         text-align: center;
         color: white;
-        padding: 10px;
-        font-size: 12px;
+        padding: 12px 24px;
+        font-size: 14px;
         font-weight: 800;
         cursor: pointer;
+        transition: opacity 0.2s;
       }
 
       button:hover {
@@ -36,47 +50,19 @@ html<!DOCTYPE html>
       button:active {
         background: #2d3f51;
         border-bottom: #2c3e50 1px solid;
-        border-left: #2c3e50 1px solid;
-        border-right: #2c3e50 1px solid;
-        border-radius: 6px;
-        text-align: center;
-        color: white;
-        padding: 10px;
-        margin-top: 3px;
+        border-top: 3px solid transparent;
       }
     </style>
     <script>
       function start() {
-        for (const element of document.getElementsByClassName("splashElement")) {
-          element.style.display = "none";
-        }
-
-        const params = new URLSearchParams(location.search);
-        const destination = params.get("dest");
-        const playDuration = (params.get("delay") ?? 7.0) * 1000;
-        const playerFrame = document.getElementById("playerFrame");
-        
-        // FIX 1: Swapped to a verified open-embed audio/video tracking ID
-        playerFrame.src = "https://youtube.com";
-        playerFrame.style.removeProperty("display");
-
-        setTimeout(() => {
-          location.href = destination ?? "https://github.com";
-        }, playDuration);
+        // Clear your site's history and sweep the window directly to the Bored Button generator
+        window.location.replace("https://boredbutton.com");
       }
     </script>
   </head>
   <body>
-    <div
-      class="splashElement"
-      style="
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
+    <!-- Fake DDoS Protection Interface -->
+    <div id="splashWrapper" class="splashElement">
       <div style="text-align: center; padding: 0 24px">
         <h1>Site protection by AnyProtect</h1>
         <p>
@@ -85,28 +71,21 @@ html<!DOCTYPE html>
         </p>
         <button
           onclick="start()"
-          style="margin-top: 24px; margin-bottom: 192px; visibility: hidden"
+          style="visibility: hidden"
           id="startButton"
         >
           Go to destination
         </button>
       </div>
     </div>
-    <iframe
-      src="about:blank"
-      style="display: none"
-      width="100%"
-      height="100%"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-      id="playerFrame"
-    ></iframe>
+
     <script>
+      // Automatically trigger the button visibility after loading scanning sequences wrap up
       setTimeout(
-        () =>
-          document
-            .getElementById("startButton")
-            .style.removeProperty("visibility"),
+        () => {
+          const btn = document.getElementById("startButton");
+          if (btn) btn.style.visibility = "visible";
+        },
         1200
       );
     </script>
